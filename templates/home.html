@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}
+home Page
+{% endblock title %}
+
+{% block body %}
+
+<!-- <header class="masthead">
+  <div class="overlay">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h3 class="site-heading my-4 mt-3 text-light">
+              Welcome To Hafeez Blog
+            </h3>
+            <p class="text-light">
+              I love Information so Much
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header> -->
+
+<div class="container-fluid mt-4">
+  <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
+    <div class="col-md-6 px-0">
+      <h1 class="display-4 fst-italic">Hafeez featured blog post</h1>
+      <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently about
+        what’s most interesting in this post’s contents.</p>
+      <p class="lead mb-0"><a href="{% url 'read' %}" class="text-white fw-bold">Continue reading...</a></p>
+    </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 mt-3 left">
+      {% for post in posts %}
+      <div class="card mb-4">
+        <div class="card-body">
+          <div>published: {{ post.published_date }}</div>
+          <h2 class="card-title">{{post.title}}</h2>
+          <p class="card-text text-muted h6">{{post.author}} | {{post.created_on}}</p>
+          <div class="card-text">{{post.description|slice:":200" }}</div>
+            <a href="{% url 'detail' pk=post.pk %}" class="btn btn-primary">Read More &rarr;</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% block sidebar %}
+    {% include "sidebar.html" %}
+    {% endblock sidebar %}
+  </div>
+</div>
+
+{% endblock body %}
